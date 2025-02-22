@@ -1,0 +1,23 @@
+[
+  {
+    "image": "assets/images/testimonial1.jpg",
+    "nombre": "Juan M. Pérez",
+    "profesion": "Nutricionista",
+    "pais": "México",
+    "mensaje": "GT-NutriForm 5 revolucionó mi forma de formular alimento balanceado."
+  },
+  {
+    "image": "assets/images/testimonial2.jpg",
+    "nombre": "María Santis",
+    "profesion": "Ingeniera de Alimentos",
+    "pais": "Colombia",
+    "mensaje": "Una herramienta imprescindible para mi negocio avícola."
+  },
+  {
+    "image": "assets/images/testimonial3.jpg",
+    "nombre": "Carlos García",
+    "profesion": "Consultor Avícola",
+    "pais": "Perú",
+    "mensaje": "Eficiente, precisa y fácil de usar, superó mis expectativas."
+  }
+]

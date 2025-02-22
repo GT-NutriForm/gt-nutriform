@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GT-NutriForm 5</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- EmailJS SDK -->
+  <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+  <script> new VConsole();</script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script //type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script //src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <!-- Izquierda: Logo y Texto -->
+      <div class="navbar-left">
+        <a href="index.html" class="brand">
+          <img src="assets/images/Logo_GT_Nutriform.png" alt="Logo GT-NutriForm 5" class="logo">
+          <span>GT-NutriForm 5</span>
+        </a>
+      </div>
+      <!-- Derecha: Menú y botón hamburguesa -->
+      <div class="navbar-right">
+        <!-- Menú desplegable -->
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="planes.html" class="nav-link">Planes</a></li>
+          <li class="nav-item"><a href="#faqs" class="nav-link">Faqs</a></li>
+          <li class="nav-item"><a href="#solicitud-form" class="nav-link contact-link" data-solicitud="Solicitar Soporte Técnico">Contacto</a></li>
+        </ul>
+        <!-- Botón hamburguesa para móviles -->
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>GT-NutriForm 5</h1>
+      <p>La herramienta definitiva para la formulación de alimento balanceado para aves.</p>
+      <a href="#solicitud-form" class="cta" data-solicitud="Solicitar GT-NutriForm 5">Prueba Gratis por 7 Días</a>
+    </div>
+  </section>
+
+  <!-- Video Presentation Section -->
+  <section class="video-presentation">
+    <div class="container">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/dBfoMnttWM4" title="Video de Presentación - GT-NutriForm 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2>Características Destacadas</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>Dinámica y Actualizable</h3>
+          <p>Fácil de usar y actualizar en tiempo real.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Preconfigurada</h3>
+          <p>Con requerimientos nutricionales por etapa de producción.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Amplia Base de Datos</h3>
+          <p>Más de 500 materias primas disponibles.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Soporte y Asesoría</h3>
+          <p>Acceso a soporte técnico y asesoramiento especializado.</p>
+        </div>
+      </div>
+      <a href="#solicitud-form" class="cta" data-solicitud="Solicitar GT-NutriForm 5">Prueba Gratis por 7 Días</a>
+    </div>
+  </section>
+
+  <!-- Screenshot Section -->
+  <section class="screenshot">
+    <div class="container">
+      <img src="assets/images/screenshot-plantilla.jpg" alt="Screenshot de la Plantilla">
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>Testimonios de Usuarios</h2>
+      <div id="testimonials-carousel" class="carousel">
+        <!-- Los testimonios se cargarán dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section class="faqs" id="faqs">
+    <div class="container">
+      <h2>Preguntas Frecuentes</h2>
+      <div id="faqs-accordion">
+        <!-- Las FAQs se cargarán dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Request Form Section -->
+  <section class="request-form" id="solicitud-form">
+    <div class="container">
+      <h2>Envíanos tu Solicitud</h2>
+      <form id="contact_form">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="name" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="solicitud">Selecciona tu solicitud:</label>
+          <select id="request_type" name="solicitud" required>
+            <option value="">Selecciona tu solicitud</option>
+            <option value="Solicitar GT-NutriForm 5">Solicitar GT-NutriForm 5</option>
+            <option value="Solicitar Soporte Técnico">Solicitar Soporte Técnico</option>
+            <option value="Solicitar Asesoramiento">Solicitar Asesoramiento</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="message" name="mensaje" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Solicitud</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>GT-NutriForm &copy; 2025</p>
+      <p>Email: <a href="mailto:contacto@gtnutriform.com">contacto@gtnutriform.com</a></p>
+      <p><a href="https://wa.me/1234567890" target="_blank">WhatsApp</a></p>
+    </div>
+  </footer>
+  <script src="assets/js/scripts.js"></script>
+</body>
+</html>
