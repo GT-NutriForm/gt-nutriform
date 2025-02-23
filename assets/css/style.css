@@ -33,10 +33,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 .navbar-left {
-  margin-left: 0; /* Se establece el margen izquierdo a cero */
+  margin-left: 0;
 }
 .navbar .brand {
   font-family: 'Montserrat', sans-serif;
@@ -46,12 +46,12 @@ body {
   align-items: left;
 }
 .navbar .brand .logo {
-  max-height: 30px; /* Tamaño menor que antes */
+  max-height: 30px;
   width: auto;
   margin-right: 1px;
 }
 .navbar .brand span {
-  font-size: 1.3em; /* Tamaño menor que antes */
+  font-size: 1.3em;
   color: #1ABC9C;
   margin-left: 1px;
 }
@@ -74,7 +74,7 @@ body {
 }
 .nav-menu .nav-link:hover {
   color: #1ABC9C;
-  background-color: rgba(26, 188, 156, 0.1); /* Efecto hover acorde */
+  background-color: rgba(26, 188, 156, 0.1);
   padding: 5px;
   border-radius: 5px;
 }
@@ -100,10 +100,10 @@ body {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 54px; /* Altura aproximada de la navbar */
+    top: 54px;
     right: 5px;
     background-color: #FFFFFF;
-    width: 150px; /* Menos ancha que antes */
+    width: 150px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
   }
@@ -115,7 +115,7 @@ body {
   }
 }
 
-/* Agregar un padding-top al hero para que no quede tapado por la navbar fija */
+/* Hero Section */
 .hero {
   background-color: #3498DB;
   color: #FFFFFF;
@@ -123,13 +123,17 @@ body {
   text-align: center;
   position: relative;
 }
+.hero h1, 
+.hero p {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
 .hero .cta {
   background-color: #1ABC9C;
   color: #FFFFFF;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 800;
   margin-top: 20px;
   display: inline-block;
 }
@@ -161,6 +165,18 @@ body {
   padding: 40px 0;
   text-align: center;
 }
+
+.features .cta {
+  background-color: #1ABC9C;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 800;
+  margin-top: 20px;
+  display: inline-block;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -273,12 +289,131 @@ body {
 
 /* Footer */
 footer {
-  background-color: #3498DB;
+  background-color: #2C3E50; /* Fondo más oscuro para mejor contraste */
   color: #FFFFFF;
   padding: 20px 0;
   text-align: center;
 }
 footer a {
-  color: #1ABC9C;
+  color: #FFFFFF;
   text-decoration: none;
 }
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Links en letras pequeñas */
+.footer-small {
+  font-size: 0.8em;
+  color: #B0B0B0;
+  margin: 5px 0;
+}
+.footer-link {
+  color: #B0B0B0;
+  text-decoration: none;
+}
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Planes Section */
+.planes {
+  padding: 40px 0;
+  background-color: #F7F7F7;
+}
+.planes h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.planes-img-container {
+  text-align: center;
+}
+.planes-img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border: 1px solid #DDD;
+  border-radius: 5px;
+}
+
+/* Sección Comparativa: ¿Por qué GT-NutriForm? */
+.comparativa {
+  padding: 40px 0;
+  background-color: #F7F7F7;
+}
+.comparativa h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #1ABC9C;
+}
+.comparativa-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.comparativa-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #DDD;
+}
+.comparativa-row {
+  display: contents;
+}
+.comparativa-cell {
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+.comparativa-row.header .comparativa-cell {
+  background-color: #3498DB;
+  color: #FFFFFF;
+  font-weight: bold;
+  border-bottom: 2px solid #1ABC9C;
+}
+.comparativa-cell:last-child {
+  border-right: none;
+}
+.comparativa-row:last-child .comparativa-cell {
+  border-bottom: none;
+}
+.comparativa-cell.advantage {
+  text-align: left;
+  font-weight: 600;
+}
+.check {
+  color: green;
+  font-size: 1.4em;
+}
+.cross {
+  color: red;
+  font-size: 1.4em;
+}
+
+/* Sección CTA Extra */
+.cta-extra {
+  padding: 40px 0;
+  background-color: #F7F7F7;
+  text-align: center;
+}
+.cta-extra-text {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: #333;
+}
+.cta-extra .cta {
+  background-color: #1ABC9C;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Ajustes adicionales para mayor contraste (opcional) */
+/* Puedes agregar text-shadow para mejorar la legibilidad si lo consideras necesario */
