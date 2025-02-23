@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ----------------------------
-  // Envío del Formulario con EmailJS (2 plantillas disponibles)
+  // Envío del Formulario con EmailJS + reCAPTCHA v3
   // ----------------------------
   const form = document.getElementById("contact_form");
   if (!form) {
@@ -92,44 +92,51 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Prepara los parámetros para el envío
-      const templateParams = {
-        from_name: document.getElementById("name").value,
-        from_email: email,
-        request_type: document.getElementById("request_type").value,
-        message: document.getElementById("message").value,
-      };
-      console.log("Parámetros a enviar:", templateParams);
+      // Ejecutar reCAPTCHA antes de enviar el formulario
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', { action: 'submit' }).then(function(token) {
+          console.log("reCAPTCHA token generado:", token);
 
-      // Determinar la plantilla y el mensaje de alerta según la opción seleccionada
-      let selectedTemplate = "";
-      let alertMessage = "";
-      if (templateParams.request_type === "Solicitar GT-NutriForm 5") {
-        selectedTemplate = "autoresponder_gt";
-        alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}`;
-      } else if (
-        templateParams.request_type === "Solicitar Soporte Técnico" ||
-        templateParams.request_type === "Solicitar Asesoramiento"
-      ) {
-        selectedTemplate = "Soporte_Asesoria";
-        alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
-      } else {
-        // Si por alguna razón no se selecciona ninguna opción válida, se usa Soporte_Asesoria
-        selectedTemplate = "Soporte_Asesoria";
-        alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
-      }
+          // Prepara los parámetros para el envío
+          const templateParams = {
+            from_name: document.getElementById("name").value,
+            from_email: email,
+            request_type: document.getElementById("request_type").value,
+            message: document.getElementById("message").value,
+            recaptcha_response: token, // Se envía el token de reCAPTCHA
+          };
+          console.log("Parámetros a enviar:", templateParams);
 
-      // Envío del correo usando la plantilla determinada
-      emailjs.send("service_7x8onyc", selectedTemplate, templateParams)
-        .then(function (response) {
-          console.log("EmailJS respuesta:", response);
-          alert(alertMessage);
-          form.reset(); // Limpia el formulario
-        })
-        .catch(function (error) {
-          console.error("Error al enviar EmailJS:", error);
-          alert("Error al enviar el mensaje. Inténtalo de nuevo.");
+          // Determinar la plantilla y el mensaje de alerta según la opción seleccionada
+          let selectedTemplate = "";
+          let alertMessage = "";
+          if (templateParams.request_type === "Solicitar GT-NutriForm 5") {
+            selectedTemplate = "autoresponder_gt";
+            alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}`;
+          } else if (
+            templateParams.request_type === "Solicitar Soporte Técnico" ||
+            templateParams.request_type === "Solicitar Asesoramiento"
+          ) {
+            selectedTemplate = "Soporte_Asesoria";
+            alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
+          } else {
+            selectedTemplate = "Soporte_Asesoria";
+            alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
+          }
+
+          // Envío del correo usando la plantilla determinada
+          emailjs.send("service_7x8onyc", selectedTemplate, templateParams)
+            .then(function (response) {
+              console.log("EmailJS respuesta:", response);
+              alert(alertMessage);
+              form.reset(); // Limpia el formulario
+            })
+            .catch(function (error) {
+              console.error("Error al enviar EmailJS:", error);
+              alert("Error al enviar el mensaje. Inténtalo de nuevo.");
+            });
         });
+      });
     });
   }
 
@@ -154,8 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
-  
+
   // ----------------------------
   // Mobile Menu Toggle
   // ----------------------------

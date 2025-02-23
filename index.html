@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKM210WH41"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CKM210WH41');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT-NutriForm 5</title>
@@ -14,6 +23,14 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=TU_CLAVE_DEL_SITIO"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', {action: 'submit'}).then(function(token) {
+            document.getElementById('recaptchaResponse').value = token;
+        });
+    });
+</script>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -203,7 +220,7 @@
           <textarea id="message" name="mensaje" rows="5" required></textarea>
         </div>
         <!-- Widget de reCAPTCHA -->
-        <div class="g-recaptcha" data-sitekey="TU_SITE_KEY"></div>
+        <div class="g-recaptcha" data-sitekey="6LfkH-AqAAAAANf07VEZdY5YcDXcnjpUFW9Nn5vp"></div>
         <button type="submit" class="btn-submit">Enviar Solicitud</button>
       </form>
     </div>
@@ -215,7 +232,7 @@
       <p>GT-NutriForm &copy; 2025</p>
       <p class="footer-small">
         <a href="privacy.html" class="footer-link">Política de Privacidad</a> |
-        <a href="terms.html" class="footer-link">Términos y Condiciones</a>
+        <a href="#"<!-- terms.html -- class="footer-link">Términos y Condiciones</a>
       </p>
       <p class="footer-small">
         <a href="https://www.facebook.com/GTNutriformOficial" target="_blank" class="footer-link">Síguenos en Facebook</a>
