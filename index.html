@@ -27,7 +27,7 @@
   <script>
     // Generar el token de reCAPTCHA v3 al cargar la página y asignarlo al input oculto
     grecaptcha.ready(function() {
-        grecaptcha.execute('6LcmZOEqAAAAAHJjXFoIQo5zHJ3gbmGSojrkExNY', {action: 'submit'}).then(function(token) {
+        grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', {action: 'submit'}).then(function(token) {
             var recaptchaResponse = document.getElementById('recaptchaResponse');
             if (recaptchaResponse) {
               recaptchaResponse.value = token;
