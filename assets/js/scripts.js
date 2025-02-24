@@ -96,6 +96,23 @@ document.addEventListener('DOMContentLoaded', function() {
       grecaptcha.ready(function() {
         grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', { action: 'submit' }).then(function(token) {
           console.log("reCAPTCHA token generado:", token);
+          fetch('/.netlify/functions/validate-recaptcha', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ token: tuTokenObtenido })
+})
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      // Proceder con el envío o procesamiento del formulario
+      console.log('Validación exitosa, score:', data.score);
+    } else {
+      // Manejar el error o puntaje bajo
+      console.error('Error en reCAPTCHA:', data.error);
+    }
+  })
+  .catch(err => console.error('Error al validar reCAPTCHA:', err));
+
 
           // Prepara los parámetros para el envío
           const templateParams = {

@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKM210WH41"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CKM210WH41');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKM210WH41"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CKM210WH41');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT-NutriForm 5</title>
@@ -23,14 +22,19 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js?render=TU_CLAVE_DEL_SITIO"></script>
-<script>
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcmZOEqAAAAAHJjXFoIQo5zHJ3gbmGSojrkExNY"></script>
+  <script>
+    // Generar el token de reCAPTCHA v3 al cargar la página y asignarlo al input oculto
     grecaptcha.ready(function() {
-        grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', {action: 'submit'}).then(function(token) {
-            document.getElementById('recaptchaResponse').value = token;
+        grecaptcha.execute('6LcmZOEqAAAAAHJjXFoIQo5zHJ3gbmGSojrkExNY', {action: 'submit'}).then(function(token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            if (recaptchaResponse) {
+              recaptchaResponse.value = token;
+            }
         });
     });
-</script>
+  </script>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -219,8 +223,8 @@
           <label for="mensaje">Mensaje:</label>
           <textarea id="message" name="mensaje" rows="5" required></textarea>
         </div>
-        <!-- Widget de reCAPTCHA -->
-        <div class="g-recaptcha" data-sitekey="6LfkH-AqAAAAANf07VEZdY5YcDXcnjpUFW9Nn5vp"></div>
+        <!-- Input oculto para el token de reCAPTCHA v3 -->
+        <input type="hidden" id="recaptchaResponse" name="recaptcha_response">
         <button type="submit" class="btn-submit">Enviar Solicitud</button>
       </form>
     </div>
