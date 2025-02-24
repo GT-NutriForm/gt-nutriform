@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de Endpoint - GT-NutriForm</title>
+  <script>
+    function enviarFormulario(event) {
+      event.preventDefault(); // Evita el envío por defecto
+
+      // Obtener valores del formulario
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+
+      // Preparar los datos a enviar
+      const data = {
+        nombre: nombre,
+        email: email,
+        token: "GT-nf-Secret" // Token de autenticación que espera el script
+      };
+
+      console.log("Datos a enviar:", data); // Depuración
+
+      // Enviar los datos al endpoint
+      fetch("https://script.google.com/macros/s/AKfycbywbvcKXu9Fm-JVAWvxvBl-vKMhsNRp7HNoP2rZmMu1YQJw5tGwxnhv8gyB1GYedspL/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        console.log("Respuesta del servidor:", result); // Depuración
+        alert("Resultado: " + result.result);
+      })
+      .catch(error => {
+        console.error("Error al enviar los datos:", error);
+        alert("Error al enviar los datos.");
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Prueba de Endpoint para GT-NutriForm</h1>
+  <form id="testForm" onsubmit="enviarFormulario(event)">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Agregar vConsole para ver errores en móvil -->
+  <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+  <script>
+    var vConsole = new VConsole();
+    console.log("vConsole iniciado");
+  </script>
+</body>
+</html>
