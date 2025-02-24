@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Ejecutar reCAPTCHA antes de enviar el formulario
       grecaptcha.ready(function() {
-        grecaptcha.execute('6LfkH-AqAAAAAIAISaUc7q4DWH1sD9lQCNhcCigU', { action: 'submit' }).then(function(token) {
+        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', { action: 'submit' }).then(function(token) {
           console.log("reCAPTCHA token generado:", token);
           fetch('/.netlify/functions/validate-recaptcha', {
   method: 'POST',
