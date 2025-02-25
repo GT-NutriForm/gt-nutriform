@@ -1,9 +1,6 @@
 // netlify/functions/validate-recaptcha.js
 
-// Si usas Node.js 18 o superior, puedes usar fetch nativo y omitir la siguiente línea.
-// De lo contrario, instala node-fetch con: npm install node-fetch
-//const fetch = require('node-fetch');
-
+// Si usas Node.js 18 o superior, fetch es nativo y no necesitas importar node-fetch.
 exports.handler = async (event, context) => {
   // Solo se aceptan solicitudes POST
   if (event.httpMethod !== 'POST') {
@@ -23,13 +20,13 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Recupera la clave secreta (private key) desde las variables de entorno
+    // Recupera la clave secreta de reCAPTCHA desde las variables de entorno
     const secretKey = process.env.RECAPTCHA_SECRET;
 
-    // URL de verificación de reCAPTCHA de Google
+    // Construir la URL de verificación de reCAPTCHA de Google
     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
-    // Realiza la petición POST a la API de Google
+    // Realiza la petición POST a la API de Google para verificar el token
     const response = await fetch(verificationUrl, { method: 'POST' });
     const data = await response.json();
 
@@ -41,7 +38,7 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Verificar el score con el umbral humano (0.7)
+    // Verificar que el score sea mayor o igual al umbral humano (0.7)
     if (data.score < 0.7) {
       return {
         statusCode: 400,
@@ -49,7 +46,7 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Si todo es correcto, se devuelve una respuesta exitosa
+    // Si la validación es exitosa, se devuelve una respuesta exitosa
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, score: data.score }),
@@ -62,5 +59,3 @@ exports.handler = async (event, context) => {
     };
   }
 };
-
-

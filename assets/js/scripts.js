@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault(); // Evita el envío por defecto
       console.log("Evento submit capturado.");
 
-      // Validación del email
+      // Validación básica del email
       const email = document.getElementById("email").value;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
@@ -92,67 +92,70 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Ejecutar reCAPTCHA antes de enviar el formulario
+      // Ejecutar reCAPTCHA v3 para obtener el token
       grecaptcha.ready(function() {
-        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', { action: 'submit' }).then(function(token) {
-          console.log("reCAPTCHA token generado:", token);
-          fetch('/.netlify/functions/validate-recaptcha', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ token: tuTokenObtenido })
-})
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      // Proceder con el envío o procesamiento del formulario
-      console.log('Validación exitosa, score:', data.score);
-    } else {
-      // Manejar el error o puntaje bajo
-      console.error('Error en reCAPTCHA:', data.error);
-    }
-  })
-  .catch(err => console.error('Error al validar reCAPTCHA:', err));
+        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', { action: 'submit' })
+          .then(function(token) {
+            console.log("reCAPTCHA token generado:", token);
 
-
-          // Prepara los parámetros para el envío
-          const templateParams = {
-            from_name: document.getElementById("name").value,
-            from_email: email,
-            request_type: document.getElementById("request_type").value,
-            message: document.getElementById("message").value,
-            recaptcha_response: token, // Se envía el token de reCAPTCHA
-          };
-          console.log("Parámetros a enviar:", templateParams);
-
-          // Determinar la plantilla y el mensaje de alerta según la opción seleccionada
-          let selectedTemplate = "";
-          let alertMessage = "";
-          if (templateParams.request_type === "Solicitar GT-NutriForm 5") {
-            selectedTemplate = "autoresponder_gt";
-            alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}`;
-          } else if (
-            templateParams.request_type === "Solicitar Soporte Técnico" ||
-            templateParams.request_type === "Solicitar Asesoramiento"
-          ) {
-            selectedTemplate = "Soporte_Asesoria";
-            alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
-          } else {
-            selectedTemplate = "Soporte_Asesoria";
-            alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
-          }
-
-          // Envío del correo usando la plantilla determinada
-          emailjs.send("service_7x8onyc", selectedTemplate, templateParams)
-            .then(function (response) {
-              console.log("EmailJS respuesta:", response);
-              alert(alertMessage);
-              form.reset(); // Limpia el formulario
+            // Llamada a la función serverless en Netlify para validar el token
+            fetch('/.netlify/functions/validate-recaptcha', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              // Se envía el token obtenido; se reemplazó "tuTokenObtenido" por "token"
+              body: JSON.stringify({ token: token })
             })
-            .catch(function (error) {
-              console.error("Error al enviar EmailJS:", error);
-              alert("Error al enviar el mensaje. Inténtalo de nuevo.");
-            });
-        });
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                console.log('Validación exitosa, score:', data.score);
+
+                // Prepara los parámetros para el envío del correo
+                const templateParams = {
+                  from_name: document.getElementById("name").value,
+                  from_email: email,
+                  request_type: document.getElementById("request_type").value,
+                  message: document.getElementById("message").value,
+                  recaptcha_response: token, // Se envía el token de reCAPTCHA
+                };
+                console.log("Parámetros a enviar:", templateParams);
+
+                // Determinar la plantilla y el mensaje de alerta según la solicitud
+                let selectedTemplate = "";
+                let alertMessage = "";
+                if (templateParams.request_type === "Solicitar GT-NutriForm 5") {
+                  selectedTemplate = "autoresponder_gt";
+                  alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}`;
+                } else if (
+                  templateParams.request_type === "Solicitar Soporte Técnico" ||
+                  templateParams.request_type === "Solicitar Asesoramiento"
+                ) {
+                  selectedTemplate = "Soporte_Asesoria";
+                  alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
+                } else {
+                  selectedTemplate = "Soporte_Asesoria";
+                  alertMessage = `Gracias ${templateParams.from_name} por tu mensaje. Nos pondremos en contacto a la mayor brevedad vía ${templateParams.from_email}`;
+                }
+
+                // Envío del correo usando EmailJS
+                emailjs.send("service_7x8onyc", selectedTemplate, templateParams)
+                  .then(function (response) {
+                    console.log("EmailJS respuesta:", response);
+                    alert(alertMessage);
+                    form.reset(); // Limpia el formulario
+                  })
+                  .catch(function (error) {
+                    console.error("Error al enviar EmailJS:", error);
+                    alert("Error al enviar el mensaje. Inténtalo de nuevo.");
+                  });
+              } else {
+                // Si la validación falla, se muestra el error
+                console.error('Error en reCAPTCHA:', data.error);
+                alert("Error en reCAPTCHA: " + data.error);
+              }
+            })
+            .catch(err => console.error('Error al validar reCAPTCHA:', err));
+          });
       });
     });
   }
@@ -190,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Cargar contenido dinámico
+  // Cargar contenido dinámico: Testimonios y FAQs
   loadTestimonials();
   loadFAQs();
 });
