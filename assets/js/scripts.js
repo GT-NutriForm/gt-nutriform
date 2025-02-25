@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let alertMessage = "";
                 if (templateParams.request_type === "Solicitar GT-NutriForm 5") {
                   selectedTemplate = "autoresponder_gt";
-                  alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}`;
+                  alertMessage = `Gracias ${templateParams.from_name} por tu solicitud. Te hemos enviado un mensaje a ${templateParams.from_email}. Si no lo encuentras en tu inbox, por favor revisa la carpeta SPAM`;
                 } else if (
                   templateParams.request_type === "Solicitar Soporte Técnico" ||
                   templateParams.request_type === "Solicitar Asesoramiento"
