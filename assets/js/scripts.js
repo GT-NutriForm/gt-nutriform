@@ -84,11 +84,19 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault(); // Evita el envío por defecto
       console.log("Evento submit capturado.");
 
+      // Referencia al botón de envío
+      const submitButton = document.querySelector('.btn-submit');
+      // Deshabilitar y agregar clase de carga para evitar reenvío
+      submitButton.disabled = true;
+      submitButton.classList.add("btn-loading");
+
       // Validación básica del email
       const email = document.getElementById("email").value;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         alert("Por favor, ingresa un correo electrónico válido.");
+        submitButton.disabled = false;
+        submitButton.classList.remove("btn-loading");
         return;
       }
 
@@ -102,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('/.netlify/functions/validate-recaptcha', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              // Se envía el token obtenido; se reemplazó "tuTokenObtenido" por "token"
+              // Se envía el token obtenido
               body: JSON.stringify({ token: token })
             })
             .then(res => res.json())
@@ -143,18 +151,35 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log("EmailJS respuesta:", response);
                     alert(alertMessage);
                     form.reset(); // Limpia el formulario
+                    // Reactivar el botón de envío
+                    submitButton.disabled = false;
+                    submitButton.classList.remove("btn-loading");
                   })
                   .catch(function (error) {
                     console.error("Error al enviar EmailJS:", error);
                     alert("Error al enviar el mensaje. Inténtalo de nuevo.");
+                    // Reactivar el botón en caso de error
+                    submitButton.disabled = false;
+                    submitButton.classList.remove("btn-loading");
                   });
               } else {
-                // Si la validación falla, se muestra el error
+                // Si la validación de reCAPTCHA falla
                 console.error('Error en reCAPTCHA:', data.error);
                 alert("Error en reCAPTCHA: " + data.error);
+                submitButton.disabled = false;
+                submitButton.classList.remove("btn-loading");
               }
             })
-            .catch(err => console.error('Error al validar reCAPTCHA:', err));
+            .catch(err => {
+              console.error('Error al validar reCAPTCHA:', err);
+              submitButton.disabled = false;
+              submitButton.classList.remove("btn-loading");
+            });
+          })
+          .catch(err => {
+            console.error("Error en la ejecución de reCAPTCHA:", err);
+            submitButton.disabled = false;
+            submitButton.classList.remove("btn-loading");
           });
       });
     });

@@ -417,3 +417,34 @@ footer a:hover {
 
 /* Ajustes adicionales para mayor contraste (opcional) */
 /* Puedes agregar text-shadow para mejorar la legibilidad si lo consideras necesario */
+
+
+/* ========================= */
+/* Estado de carga para el botón de envío */
+/* ========================= */
+.btn-loading {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
