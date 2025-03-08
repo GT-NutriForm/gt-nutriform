@@ -1,0 +1,9 @@
+User-agent: *
+# Bloquear el acceso a la carpeta de datos que contiene archivos JSON internos
+Disallow: /assets/data/
+
+# Permitir el acceso a todo el resto del sitio
+Allow: /
+
+# Indicar la ubicación del sitemap para facilitar la indexación
+Sitemap: https://gt-nutriform.netlify.app/sitemap.xml
