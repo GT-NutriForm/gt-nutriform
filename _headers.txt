@@ -1,0 +1,16 @@
+# Habilitar caching para recursos estáticos (imágenes, CSS, JS)
+# Se cachearán por un año y se marcarán como inmutables
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Si tienes archivos JSON que usas para datos internos, es mejor no cachearlos agresivamente:
+#/assets/data/*
+#  Cache-Control: no-cache
+
+# Seguridad adicional para todas las rutas
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://gt-nutriform.netlify.app; script-src 'self'
