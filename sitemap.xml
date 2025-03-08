@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página de Inicio -->
+  <url>
+    <loc>https://gt-nutriform.netlify.app/</loc>
+    <lastmod>2025-03-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Página de Privacy -->
+  <url>
+    <loc>https://gt-nutriform.netlify.app/privacy.html</loc>
+    <lastmod>2025-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Página de Términos -->
+  <url>
+    <loc>https://gt-nutriform.netlify.app/terminos.html</loc>
+    <lastmod>2025-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+ </urlset>
