@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://gt-nutriform.netlify.app/sitemap.xml
-
