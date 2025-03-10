@@ -12,8 +12,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT-NutriForm 5</title>
-  <meta name="description" content="GT-NutriForm 5 es la herramienta definitiva para la formulación de alimento balanceado para gallinas ponedoras y pollos de engorde. Descubre nuestros planes adaptados a cada necesidad.">
-  <meta name="keywords" content="GT-NutriForm, calcular raciones balanceadas, raciones para pollos de engorde, alimentación avícola, raciones para gallinas ponedoras, nutrición avícola">
+  <meta name="description" content="GT-NutriForm 5 es la herramienta definitiva para la formulación de raciones balanceadas para gallinas ponedoras y pollos de engorde. Descubre nuestros planes adaptados a cada necesidad.">
+  <meta name="keywords" content="GT-NutriForm, pollos de engorde, broilers, gsllinas ponedoras, alimento concentrado, calcular raciones balanceadas, raciones para pollos de engorde, alimentación avícola, raciones para gallinas ponedoras, nutrición avícola">
   <meta name="author" content="GT-NutriForm">
   <!-- Favicon -->
   <link rel="icon" href="assets/images/Logo_GT_Nutriform.png" type="image/png" sizes="32x32">
@@ -70,18 +70,18 @@
   <section class="hero">
     <div class="container">
       <h1>GT-NutriForm 5</h1>
-      <p>La herramienta definitiva para la formulación de alimento balanceado para ponedoras y pollos de engorde.</p>
+      <p>La herramienta definitiva para la formulación de raciones balanceadas para gallinas ponedoras y pollos de engorde.</p>
       <a href="#solicitud-form" class="cta" data-solicitud="Solicitar GT-NutriForm 5">¡Prueba Gratis por 7 Días!</a>
     </div>
   </section>
 
   <!-- Video Presentation Section -->
   <section class="video-presentation">
-    <div class="container">
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/dBfoMnttWM4" title="Video de Presentación - GT-NutriForm 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
+    <lite-youtube videoid="dBfoMnttWM4" style="background-image: url('assets/images/miniatura_youtube.webp');">
+    <a href="https://youtu.be/dBfoMnttWM4" class="lyt-playbtn" title="Ver Video: Presentación del Formulador de raciones para pollos de engorde y gallinas ponedoras GT-NutriForm">
+    <span class="lyt-visually-hidden">Ver Video: Presentación del Formulador de raciones para pollos de engorde y gallinas ponedoras GT-NutriForm</span>
+  </a>
+</lite-youtube>
   </section>
 
   <!-- Features Section -->
@@ -204,11 +204,11 @@
       <form id="contact_form">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
-          <input type="text" id="name" name="nombre" required>
+          <input type="text" id="name" name="nombre" required="Este campo es obligatorio" placeholder="Esceibe tu nombre aquí">
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" required="Este campo es obligatorio" placeholder="Escribe un email válido">
         </div>
         <div class="form-group">
           <label for="solicitud">Selecciona tu solicitud:</label>
@@ -221,7 +221,7 @@
         </div>
         <div class="form-group">
           <label for="mensaje">Mensaje:</label>
-          <textarea id="message" name="mensaje" rows="5" required></textarea>
+          <textarea id="message" name="mensaje" rows="5" required="Este campo es obligatorio" placeholder="Déjanos tu mensaje aquí"></textarea>
         </div>
         <!-- Input oculto para el token de reCAPTCHA v3 -->
         <input type="hidden" id="recaptchaResponse" name="recaptcha_response">
