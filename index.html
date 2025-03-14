@@ -17,24 +17,6 @@
   <meta name="author" content="GT-NutriForm">
   <!-- Favicon -->
   <link rel="icon" href="assets/images/Logo_GT_Nutriform.png" type="image/png" sizes="32x32">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- EmailJS SDK -->
-  <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <!-- Google reCAPTCHA v3 -->
-  <script defer src="https://www.google.com/recaptcha/api.js?render=6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie"></script>
-  <script>
-    // Generar el token de reCAPTCHA v3 al cargar la página y asignarlo al input oculto
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', {action: 'submit'}).then(function(token) {
-            var recaptchaResponse = document.getElementById('recaptchaResponse');
-            if (recaptchaResponse) {
-              recaptchaResponse.value = token;
-            }
-        });
-    });
-  </script>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -287,5 +269,23 @@
 
 <!-- Script personalizado (asegura que el menú, carrusel y acordeón funcionen) -->
 <script defer src="assets/js/scripts.js"></script>
+<!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link defer rel="stylesheet" href="assets/css/style.css">
+  <!-- EmailJS SDK -->
+  <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Google reCAPTCHA v3 -->
+  <script defer src="https://www.google.com/recaptcha/api.js?render=6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie"></script>
+  <script>
+    // Generar el token de reCAPTCHA v3 al cargar la página y asignarlo al input oculto
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', {action: 'submit'}).then(function(token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            if (recaptchaResponse) {
+              recaptchaResponse.value = token;
+            }
+        });
+    });
+  </script>
 </body>
 </html>
