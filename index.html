@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKM210WH41"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CKM210WH41');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT-NutriForm 5</title>
   <meta name="description" content="GT-NutriForm 5 es la herramienta definitiva para la formulación de raciones balanceadas para gallinas ponedoras y pollos de engorde. Descubre nuestros planes adaptados a cada necesidad.">
   <meta name="keywords" content="GT-NutriForm, pollos de engorde, broilers, gallinas ponedoras, alimento concentrado, calcular raciones balanceadas, raciones para pollos de engorde, alimentación avícola, raciones para gallinas ponedoras, nutrición avícola">
   <meta name="author" content="GT-NutriForm">
-
-  <!-- Favicon optimizado -->
+  <!-- Favicon -->
   <link rel="icon" href="assets/images/Logo_GT_Nutriform.png" type="image/png" sizes="32x32">
-  <link rel="preload" href="assets/images/Logo_GT_Nutriform.png" as="image">
-
-  <!-- Google Fonts optimizado -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- CSS optimizado -->
-  <link rel="preload" href="assets/css/style.css" as="style">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- EmailJS SDK -->
+  <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Google reCAPTCHA v3 -->
+  <script defer src="https://www.google.com/recaptcha/api.js?render=6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie"></script>
+  <script>
+    // Generar el token de reCAPTCHA v3 al cargar la página y asignarlo al input oculto
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie', {action: 'submit'}).then(function(token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            if (recaptchaResponse) {
+              recaptchaResponse.value = token;
+            }
+        });
+    });
+  </script>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -230,7 +245,13 @@
       <p class="footer-small"><a href="https://chat.whatsapp.com/FxPt0Y5kZd5LOjYVSUMtaE" target="_blank" class="footer-link">Comunidad en WhatsApp</a></p>
     </div>
   </footer>
-  <!-- Google Analytics optimizado -->
+  <!-- jQuery (si es necesario) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+<!-- Bootstrap (si lo usas) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<!-- Google Analytics -->
 <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-CKM210WH41"></script>
 <script defer>
   window.dataLayer = window.dataLayer || [];
@@ -239,7 +260,7 @@
   gtag('config', 'G-CKM210WH41', { 'anonymize_ip': true });
 </script>
 
-<!-- Google reCAPTCHA v3 optimizado -->
+<!-- Google reCAPTCHA v3 -->
 <script defer src="https://www.google.com/recaptcha/api.js?render=6LfQkOEqAAAAAOVi-wdWOMLtjUyM1DyBTZVf91Ie"></script>
 <script defer>
   document.addEventListener("DOMContentLoaded", function() {
@@ -263,5 +284,8 @@
     document.body.appendChild(script);
   });
 </script>
+
+<!-- Script personalizado (asegura que el menú, carrusel y acordeón funcionen) -->
+<script defer src="assets/js/scripts.js"></script>
 </body>
 </html>
